@@ -11,13 +11,14 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.testsandroid.earthquake.Constants
 import com.testsandroid.earthquake.Earthquake
 import com.testsandroid.earthquake.R
 import com.testsandroid.earthquake.api.ApiResponseStatus
 import com.testsandroid.earthquake.api.WorkerUtil
 import com.testsandroid.earthquake.databinding.ActivityMainBinding
 import com.testsandroid.earthquake.detail.DetailActivity
-private const val SORT_TYPE = "SORT_TYPE"
+
 class MainActivity : AppCompatActivity() {
     private lateinit var viewMail: MainViewMail
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getSortType(): Boolean {
         val prefs = getPreferences(Context.MODE_PRIVATE)
-        return  prefs.getBoolean(SORT_TYPE,false)
+        return  prefs.getBoolean(Constants.SORT_TYPE,false)
 
     }
 
@@ -90,13 +91,14 @@ class MainActivity : AppCompatActivity() {
     }
     private fun openDetailActivity(earthquake: Earthquake) {
         val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.EQ_KEY, earthquake)
+        //se coloca el key con el que se identifica el value y el value
+        intent.putExtra(Constants.EQ_KEY, earthquake)
         startActivity(intent)
     }
     private fun saveSortType(sortByMagnitud: Boolean){
         val prefs = getSharedPreferences("EQ_PREFS", Context.MODE_PRIVATE)
         val editor =  prefs.edit()
-        editor.putBoolean(SORT_TYPE,sortByMagnitud)
+        editor.putBoolean(Constants.SORT_TYPE,sortByMagnitud)
         editor.apply()
     }
 

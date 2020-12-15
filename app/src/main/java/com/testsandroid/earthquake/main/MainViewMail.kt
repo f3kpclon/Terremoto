@@ -10,6 +10,7 @@ import kotlinx.coroutines.*
 import java.net.UnknownHostException
 
 private val TAG = MainViewMail::class.java.simpleName
+
 class MainViewMail(application: Application,private val sortType:Boolean): AndroidViewModel(application) {
    private val database = getDataBase(application.applicationContext)
    private val repository = MainRepository(database)

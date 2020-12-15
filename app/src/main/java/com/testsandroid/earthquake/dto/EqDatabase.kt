@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.testsandroid.earthquake.Constants
 import com.testsandroid.earthquake.Earthquake
 
 @Database(entities = [Earthquake::class], version = 1)
@@ -20,7 +21,7 @@ fun getDataBase(context: Context): EqDatabase{
                 Room.databaseBuilder(
                     context.applicationContext,
                     EqDatabase::class.java,
-                    "earthquake_db"
+                    Constants.NAME_DB
                 ).build()
         }
         return INSTANCE

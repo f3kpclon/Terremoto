@@ -2,6 +2,7 @@ package com.testsandroid.earthquake.api
 
 import android.content.Context
 import androidx.work.*
+import com.testsandroid.earthquake.Constants
 import java.util.concurrent.TimeUnit
 
 object WorkerUtil {
@@ -17,8 +18,9 @@ object WorkerUtil {
                 .setConstraints(constraints)
                 .build()
 
-        //se instancia el WorkManager
+        //se instancia el WorkManager, primero va el String que hace referencia ala syncWorkmanager, el tipo de policy al instanciar
+        //si se mantiene(KEEP) u otro valor, y el syncRequest que es la periocidad en que se instacia el WORKER
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
-            SyncWorkManager.WORK_NAME, ExistingPeriodicWorkPolicy.KEEP,syncRequest)
+            Constants.WORK_NAME, ExistingPeriodicWorkPolicy.KEEP,syncRequest)
     }
 }
